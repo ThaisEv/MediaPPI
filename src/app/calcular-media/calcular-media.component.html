@@ -1,0 +1,33 @@
+<form>
+    <div class="form-components">
+        <label for="b1">Bimestre 1: </label>
+        <input id="b1" name="b1" type="number" #bim1>
+    </div>
+
+    <div class="form-components">
+        <label for="b2">Bimestre 2: </label>
+        <input id="b2" name="b2" type="number" #bim2>
+    </div>
+
+    <div class="form-components">
+        <label for="b3">Bimestre 3: </label>
+        <input id="b3" name="b3" type="number" #bim3>
+    </div>
+
+    <div class="form-components">
+        <label for="b4">Bimestre 4: </label>
+        <input id="b4" name="b4" type="number" #bim4>
+    </div>
+
+    <div>
+        <input type="button" 
+        value="Calcular"
+        (click)="calcularMediaParcial(+bim1.value, +bim2.value, +bim3.value, +bim4.value)">
+    </div>
+    
+</form>
+
+<div *ngIf="mediaParcial">
+    <p>Média = {{mediaParcial}}</p>
+    <p>Situação = {{situacao}}!</p>
+</div>
