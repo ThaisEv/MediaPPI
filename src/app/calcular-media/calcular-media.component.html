@@ -1,33 +1,93 @@
-<form>
-    <div class="form-components">
-        <label for="b1">Bimestre 1: </label>
-        <input id="b1" name="b1" type="number" #bim1>
+<div class="corpo">
+    <h5>Adicionar Notas:</h5>
+
+<form class="row g-6 mb-5">
+    <div class="col-auto">
+        <label class="form-label" for="dis">Disciplina: </label>
+        <select class="form-select" name="dis" id="dis" required #dis>
+            <option value="" selected>(Selecionar)</option>
+            <option *ngFor="let bo of Boletins" [value]="bo.disciplina">{{bo.disciplina}}</option>
+        </select>
+        <!-- <input id="dis" name="dis" type="string" #dis> -->
+    </div>
+    <div class="col-auto">
+        <label for="b1" class="form-label">Bimestre 1: </label>
+        <input id="b1" class="form-control" name="b1" type="number" placeholder="N1" required #bim1>
     </div>
 
-    <div class="form-components">
-        <label for="b2">Bimestre 2: </label>
-        <input id="b2" name="b2" type="number" #bim2>
+    <div class="col-auto">
+        <label class="form-label" for="b2">Bimestre 2: </label>
+        <input class="form-control" id="b2" name="b2" type="number" placeholder="N2" required #bim2>
     </div>
 
-    <div class="form-components">
-        <label for="b3">Bimestre 3: </label>
-        <input id="b3" name="b3" type="number" #bim3>
+    <div class="col-auto">
+        <label class="form-label" for="b3">Bimestre 3: </label>
+        <input class="form-control" id="b3" name="b3" type="number" placeholder="N3" required #bim3>
     </div>
 
-    <div class="form-components">
-        <label for="b4">Bimestre 4: </label>
-        <input id="b4" name="b4" type="number" #bim4>
+    <div class="col-auto">
+        <label class="form-label" for="b4">Bimestre 4: </label>
+        <input class="form-control" id="b4" name="b4" type="number" placeholder="N4" required #bim4>
     </div>
 
-    <div>
-        <input type="button" 
-        value="Calcular"
-        (click)="calcularMediaParcial(+bim1.value, +bim2.value, +bim3.value, +bim4.value)">
+    <div class="col-auto pt-4">
+        <input class="btn btn-success" type="button" 
+        value="Adicionar"
+        (click)="adicionarBoletim(dis.value, +bim1.value, +bim2.value, +bim3.value, +bim4.value)">
     </div>
     
 </form>
 
-<div *ngIf="mediaParcial">
-    <p>Média = {{mediaParcial}}</p>
-    <p>Situação = {{situacao}}!</p>
+<h5>Boletim:</h5>
+
+<div>
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th>Nome</th>
+            <th>Situação</th>
+            <th>B1</th>
+            <th>B2</th>
+            <th>B3</th>
+            <th>B4</th>
+            <th>MD</th>
+            <th>NAF</th>
+            <th>MFD</th>
+        </tr>
+        <tr *ngFor="let bo of Boletins">
+            <td>{{bo.disciplina}}</td>
+            <td><div [ngClass]="{
+                'badge': true,
+                'text-bg-primary': bo.situacao === 'Cursando(a)',
+                'text-bg-success': bo.situacao === 'Aprovado(a)',
+                'text-bg-warning': bo.situacao === 'Avaliação Final',
+                'text-bg-danger': bo.situacao === 'Reprovado(a)'
+            }">
+                {{bo.situacao}}
+        </div></td>
+            <td>{{bo.b1}}</td>
+            <td>{{bo.b2}}</td>
+            <td>{{bo.b3}}</td>
+            <td>{{bo.b4}}</td>
+            <td>{{bo.mp}}</td>
+            <td>
+                <div *ngIf="bo.situacao === 'Avaliação Final'">
+                    <form class="row g-1" (ngSubmit)="adicionarNotaFinal(bo.disciplina, +NAF.value)">
+                        <div class="col-auto">
+                            <label class="form-label" for="na">Nota da Av. Final: </label>
+                            <input class="form-control" id="na" name="na" type="number" required #NAF>
+                        </div>
+                        <div class="col-auto pt-4 pl-1">
+                            <button class="btn btn-success" type="submit">Calcular</button>
+                        </div>
+                    </form>
+                </div>
+                <div *ngIf="bo.situacao != 'Avaliação Final'">
+                    {{bo.naf}}
+                </div>
+            </td>
+            <td>{{bo.mf}}</td>
+        </tr>
+    </table>
 </div>
+</div>
+

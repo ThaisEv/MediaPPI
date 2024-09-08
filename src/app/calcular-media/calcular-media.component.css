@@ -1,25 +1,3 @@
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.form-components {
-    display: flex;
-    flex-direction: column;
-    width: 140px;
-}
-
-.form-components input {
-    padding: 10px;
-    font-size: large;
-    border:1.5px solid blueviolet;
-    border-radius: 5px;
-}
-
-input[type='button'] {
-    padding: 10px 20px;
-    border: none;
-    background-color: blueviolet;
-    color: aliceblue;
-    border-radius: 5px;
+.corpo{
+    margin: 50px;
 }
