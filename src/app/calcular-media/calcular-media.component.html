@@ -1,7 +1,7 @@
 <div class="corpo">
     <h5>Adicionar Notas:</h5>
 
-<form class="row g-6 mb-5">
+<form class="row g-6 mb-5" (ngSubmit)="adicionarBoletim(dis.value, +bim1.value, +bim2.value, +bim3.value, +bim4.value)">
     <div class="col-auto">
         <label class="form-label" for="dis">Disciplina: </label>
         <select class="form-select" name="dis" id="dis" required #dis>
@@ -12,28 +12,29 @@
     </div>
     <div class="col-auto">
         <label for="b1" class="form-label">Bimestre 1: </label>
-        <input id="b1" class="form-control" name="b1" type="number" placeholder="N1" required #bim1>
+        <input id="b1" class="form-control" name="b1" type="number" placeholder="0" required #bim1>
     </div>
 
     <div class="col-auto">
         <label class="form-label" for="b2">Bimestre 2: </label>
-        <input class="form-control" id="b2" name="b2" type="number" placeholder="N2" required #bim2>
+        <input class="form-control" id="b2" name="b2" type="number" placeholder="0" required #bim2>
     </div>
 
     <div class="col-auto">
         <label class="form-label" for="b3">Bimestre 3: </label>
-        <input class="form-control" id="b3" name="b3" type="number" placeholder="N3" required #bim3>
+        <input class="form-control" id="b3" name="b3" type="number" placeholder="0" required #bim3>
     </div>
 
     <div class="col-auto">
         <label class="form-label" for="b4">Bimestre 4: </label>
-        <input class="form-control" id="b4" name="b4" type="number" placeholder="N4" required #bim4>
+        <input class="form-control" id="b4" name="b4" type="number" placeholder="0" required #bim4>
     </div>
 
     <div class="col-auto pt-4">
-        <input class="btn btn-success" type="button" 
+        <!-- <input class="btn btn-success" type="button" 
         value="Adicionar"
-        (click)="adicionarBoletim(dis.value, +bim1.value, +bim2.value, +bim3.value, +bim4.value)">
+        (click)="adicionarBoletim(dis.value, +bim1.value, +bim2.value, +bim3.value, +bim4.value)"> -->
+        <button class="btn btn-success" type="submit">Calcular</button>
     </div>
     
 </form>
